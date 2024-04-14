@@ -2,6 +2,7 @@
 #include <string>
 #include <map>
 #include "tstack.h"
+
 std::string infx2pstfx(std::string inf) {
     TStack<char, 100> stack1;
     std::map<char, int>  priority  = {{'(', 0}, { ')', 1}, { '+', 2},
@@ -19,8 +20,10 @@ std::string infx2pstfx(std::string inf) {
                 res_str += " ";
             }
             stack1.Pop();
-        } else if (inf[i] == '+' || inf[i] == '-' || inf[i] == '/') { // fixed logical error
-            while (!stack1.IsEmpty() && priority[inf[i]] <= priority[stack1.Top()]) {
+        } else if (inf[i] == '+' || inf[i] == '-'
+                   || inf[i] == '*' || inf[i] == '/') {
+            while ( !stack1.IsEmpty()
+                   && priority[inf[i]] <= priority[stack1.Top()]) {
                 res_str += stack1.Pop();
                 res_str += " ";
             }
@@ -34,6 +37,7 @@ std::string infx2pstfx(std::string inf) {
     res_str.erase(res_str.length() - 1);
     return res_str;
 }
+
 int eval(std::string pref) {
     TStack<int, 100> stack2;
     for (int i = 0; i < pref.length(); i++) {
