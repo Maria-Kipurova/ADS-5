@@ -20,7 +20,7 @@ std::string infx2pstfx(std::string inf) {
                 res_str += " ";
             }
             stack1.Pop();
-        } else if (inf[i] == '+' || inf[i] == '-'
+        } else if (inf[i] == '+' || inf[i] == '-' ||
                     inf[i] == '/') {
             while ( !stack1.IsEmpty()
                    && priority[inf[i]] <= priority[stack1.Top()]) {
