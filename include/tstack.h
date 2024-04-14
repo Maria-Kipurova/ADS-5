@@ -8,10 +8,9 @@ class TStack {
  private:
     int top;
     T* stack;
-
  public:
-    TStack() : top(-1), stack(new T(size)) {}
-    char Top(void) {
+    TStack() : top(-1), stack(new T[size]) {} // fixed typo
+    T Top(void) { // changed return type to T
         if (IsEmpty()) throw std::string("Stack is EMPTY!");
         else
             return stack[top];
@@ -24,7 +23,7 @@ class TStack {
             stack[top] = value;
         }
     }
-    const T& Pop() {
+    T Pop() { // changed return type to T
         if (IsEmpty()) {
             throw std::string("Stack is EMPTY!");
         }
@@ -37,5 +36,4 @@ class TStack {
             return false;
     }
 };
-
 #endif  // INCLUDE_TSTACK_H_
